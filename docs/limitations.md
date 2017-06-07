@@ -25,6 +25,13 @@
   - **Details**: The selected subscription does not have Storage RP registered.
   - **Resolution**: [Register your Storage resource provider](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-common-deployment-errors#noregisteredproviderfound)
 
+### During first use initialization, an [Unknown Error](media/startup_unknown_error.jpg) occurs
+
+  - **Details**: During first use, the console may hang and display the message, "Sorry, something went wrong: Unknown Error".
+  - **Resolution**: There are two ways to resolve this issue and either will work.
+    1. Refresh the web page using the browser's refresh button and re-open the console.
+    1. Close the shell IFrame (the sub-window that appears after clicking on the shell button) and re-open the console.
+
 ### For a given user, only one shell can be active
   - **Details**: If the user launches Bash shell first and shortly opens PowerShell, it would connect back to the Bash shell with blue background.
   Similarly, if the user launches PowerShell first and shortly opens Bash shell, it would connect back to PowerShell instance with black background.
