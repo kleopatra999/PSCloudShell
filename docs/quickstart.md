@@ -164,7 +164,7 @@ PS Azure:\> Get-Help Get-AzureRmVM
 You can create a script, say `helloworld.ps1` and save it to your clouddrive to use it across shell sessions.
 
 ```powershell
-cd PS C:\users\ContainerAdministrator\CloudDrive
+cd C:\users\ContainerAdministrator\CloudDrive
 PS C:\users\ContainerAdministrator\CloudDrive> vim .\helloworld.ps1
 # Add the content, such as 'Hello World!'
 PS C:\users\ContainerAdministrator\CloudDrive> .\helloworld.ps1
