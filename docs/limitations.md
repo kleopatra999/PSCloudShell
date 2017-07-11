@@ -5,9 +5,9 @@
   - **Workaround**: None. This is an issue we are working to address.
 
 ### ~~Azure Files storage must be in the WestUS region~~
-**Update [11 July 2017]**: We expanded coverage to match all regions supported by Cloud Shell. This is no longer an issue.
   - ~~**Details**: To auto-mount your persistent storage, it must be in the WestUS region. As we expand coverage to additional regions, this requirement will disappear. For additional information, see [Persisting Shell Storage](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage).~~
   - ~~**Workaround**: Manually mount storage in the WestUS region for the account you use for PowerShell in Azure Cloud Shell.~~
+  - **Update [11 July 2017]**: We expanded coverage to match all regions supported by Cloud Shell. This is no longer an issue.
 
 ### An error occurs during startup if your Cloud Shell storage account is already created in a region other than your current region. 
   - **Details**: This issue will affect early Private Preview users who created storage when only the West US region was supported.
