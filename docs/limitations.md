@@ -53,3 +53,8 @@
 ### GUI applications are not supported
   - **Details**: If a user tries to launch a GUI app (e.g., git clone a 2FA enabled private repo. It will pop up a 2FA authentication dialog box), the console prompt does not return.
   - **Workaround**: `Ctrl+C` to exit the command.
+
+
+### Issues with Azure Cli / Azure RM authentication when using the same PSCloudShell for more than 60min 
+  - **Details**: PSCloudShell automatically authenticates to Azure Services such as Cli and RM cmdlets in the background. When using the same shell for an extended period of time of > 60min, these auth may fail due to DNS resolution issues. 
+  - **Workaround**: This is an issue we are working to address. As a temporary workaround restart the shell by clicking [Restart Cloud Shell](media/shell-recycle.png) in the shell IFrame (refreshing the browser tab will not work).
