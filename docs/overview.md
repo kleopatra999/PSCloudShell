@@ -7,7 +7,7 @@ Leverage Cloud Shell to work untethered from a local machine in a way only the c
 ## Concepts
 
 - Cloud Shell runs on a temporary machine provided on a per-session, per-user basis
-- Cloud Shell times out after 10 minutes without interactive activity
+- Cloud Shell times out after 20 minutes without interactive activity
 - Cloud Shell can only be accessed with a file share attached
 - Cloud Shell is assigned one machine per user account
 - Permissions are set as a Windows administrator user
