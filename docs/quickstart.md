@@ -14,11 +14,12 @@ This document details how to use the PowerShell in Cloud Shell in the [Azure por
   Requesting a Cloud Shell... Succeeded.
   Connecting terminal...
 
-  Welcome to Azure Cloud PowerShell (Private Preview)\
+  Welcome to Azure Cloud Shell (Private Preview)
 
   Type "dir" in "Azure:" drive to see your subscriptions.
   Type "help" to learn more about the shell features.
 
+  VERBOSE: Authenticating to Azure services ...
   VERBOSE: Building your Azure drive ...
   PS Azure:\>
   ```
