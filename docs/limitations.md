@@ -34,7 +34,7 @@
     1. Close the shell IFrame (the sub-window that appears after clicking on the shell button) and re-open the console.
 
 ### For a given user, only one shell can be active
-  - **Details**: Users can only launch one type shell at a time, either [Bash](https://portal.azure.com) or [PowerShell](https://aka.ms/PSCloudPreview).
+  - **Details**: Users can only launch one type of shell at a time, either [Bash](https://portal.azure.com) or [PowerShell](https://aka.ms/PSCloudPreview).
   - **Workaround**: None.
 
 ### Automatic Azure authentication limit when using PowerShell in Cloud Shell for more than 60min 
