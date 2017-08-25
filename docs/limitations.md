@@ -2,12 +2,7 @@
 
 ### Startup time can be long
   - **Details**: PowerShell in Azure Cloud Shell could take up to 60 seconds to initialize.
-  - **Workaround**: None. This is an issue we are working to address.
-
-### ~~Azure Files storage must be in the WestUS region~~
-  - ~~**Details**: To auto-mount your persistent storage, it must be in the WestUS region. As we expand coverage to additional regions, this requirement will disappear. For additional information, see [Persisting Shell Storage](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage).~~
-  - ~~**Workaround**: Manually mount storage in the WestUS region for the account you use for PowerShell in Azure Cloud Shell.~~
-  - **Update [11 July 2017]**: We expanded coverage to match all regions supported by Cloud Shell. This is no longer an issue.
+  - **Workaround**: None. This is an issue we are actively working to address.
 
 ### An error occurs during startup if your Cloud Shell storage account is already created in a region other than your current region. 
   - **Details**: This issue will affect early Private Preview users who created storage when only the West US region was supported.
@@ -16,14 +11,16 @@
     * `Requesting a Cloud Shell..Sorry, something went wrong: {"code":"InternalServerError","message":"Encountered an internal server error. The tracking id is '...'."}`
 
   - **Workaround**: To mount storage in your new region, untag the existing storage account and restart PowerShell in Cloud Shell. 
-      1.	Login into [Azure Portal](https://portal.azure.com) directly (ie., without using our private preview link)
-      2.	Launch the Cloud Shell (Bash)
-          * If you have an active PowerShell session [you will need to Restart Cloud Shell](#for-a-given-user-only-one-shell-can-be-active)
+      1.	Login into [Azure Portal](https://portal.azure.com) directly (ie., without using the private preview link)
+      
+      2.	Open Bash in Cloud Shell
+      > Note: If you have an instance of PowerShell in Cloud Shell open, you will be [prompted to close](media/shell-change.png) it.
+
       3.	Wait for the prompt and run command `clouddrive unmount`
       > Note: Untagging the storage account doesn't remove any data and it will still exist in your subscription
-
-      4.	Log back using [PowerShell Private Preview link](https://aka.ms/PSCloudPreview) and launch the Cloud Shell (PowerShell) 
-      > Note: You will have to [Restart Cloud Shell](media/shell-recycle.png) for PowerShell instance
+      
+      4.	Log back using [PowerShell Private Preview link](https://aka.ms/PSCloudPreview) and open PowerShell in Cloud Shell
+      > Note: You may be [prompted to close](media/shell-change.png) Bash instance.
 
 ### An error about [MissingSubscriptionRegistration](media/storageRP-error.jpg) occurs during persistent storage creation
   - **Details**: The selected subscription does not have Storage RP registered.
@@ -36,14 +33,13 @@
     1. Refresh the web page using the browser's refresh button and re-open the console.
     1. Close the shell IFrame (the sub-window that appears after clicking on the shell button) and re-open the console.
 
-### For a given user only one shell can be active
-  - **Details**: If the user launches Bash shell first and shortly opens PowerShell, it would connect back to the Bash shell with blue background.
-  Similarly, if the user launches PowerShell first and shortly opens Bash shell, it would connect back to PowerShell instance with black background.
-  - **Workaround**: Restart the shell by clicking [Restart Cloud Shell](media/shell-recycle.png) in the shell IFrame (refreshing the browser tab will not work).
+### For a given user, only one shell can be active
+  - **Details**: Users can only launch one type shell at a time, either [Bash](https://portal.azure.com) or [PowerShell](https://aka.ms/PSCloudPreview).
+  - **Workaround**: None.
 
-### Automatic Azure authentication limit
-  - **Details**: The authentication is active only for an hour due to a limitation in processing the Azure authentication token.
-  - **Workaround**: Restart the shell by clicking [Restart Cloud Shell](media/shell-recycle.png) in the shell IFrame (refreshing the browser tab will not work).
+### Automatic Azure authentication limit when using PowerShell in Cloud Shell for more than 60min 
+  - **Details**: PowerShell in Cloud Shell automatically authenticates to Azure Services such as `az cli` and `Azure RM cmdlets` in the background. When using the same instance of shell for an extended period of time (about 60 mins or more), these authentication may fail due to DNS resolution issues.
+  - **Workaround**: This is an issue we are working to address. As a temporary workaround restart the shell by clicking [Restart Cloud Shell](media/shell-recycle.png) in the shell IFrame (refreshing the browser tab will not work).
 
 ### Get-Help -online does not open the help page
   - **Details**: If a user types `Get-Help Find-Module -online`, one will see an error message such as:\
@@ -53,8 +49,3 @@
 ### GUI applications are not supported
   - **Details**: If a user tries to launch a GUI app (e.g., git clone a 2FA enabled private repo. It will pop up a 2FA authentication dialog box), the console prompt does not return.
   - **Workaround**: `Ctrl+C` to exit the command.
-
-
-### Issues with Azure Cli / Azure RM authentication when using the same PSCloudShell for more than 60min 
-  - **Details**: PSCloudShell automatically authenticates to Azure Services such as Cli and RM cmdlets in the background. When using the same shell for an extended period of time of > 60min, these auth may fail due to DNS resolution issues. 
-  - **Workaround**: This is an issue we are working to address. As a temporary workaround restart the shell by clicking [Restart Cloud Shell](media/shell-recycle.png) in the shell IFrame (refreshing the browser tab will not work).
