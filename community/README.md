@@ -1,5 +1,6 @@
 # Community Call - PowerShell in Azure Cloud Shell
 
-The 1st Community Call for PowerShell in Azure Cloud Shell is held on the 2nd August 2017.
+- [1st Community Call (2nd August 2017)](02Aug17CommunityCall.ics)
+- [2nd Community Call (7th September 2017)](07Sept17CommunityCall.ics)
 
-Use [this ICS file](02Aug17CommunityCall.ics) (right-click `Raw` and select `Save Target/Link As` in order to download the file correctly) to put this event on your calendar.
+> NOTE: Click the appropriate ICS file, right-click `Raw` and select `Save Target/Link As` in order to download the file correctly and put the event on your calendar.
