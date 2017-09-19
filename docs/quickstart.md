@@ -322,6 +322,23 @@ If you want to customize your environment, you can create a PowerShell profile, 
 
 For how to create a profile, please refer to [About Profiles][profile].
 
+## Use Git
+
+To clone a repo in the CloudShell, you need to create a [personal access token][githubtoken] and use it as username. Once you have your  token clone the repository as follows:
+
+ ``` PowerShell
+  git clone https://<your-access-token>@github.com/username/repo.git
+
+```
+
+As the CloudShell session will be gone once you sign out or the session gets timed out, the git config file will not be persisted. To avoid entering your git identity every time you use git, you may add git config information in your custom profile. For example you may add the following to your profile.ps1. 
+
+ ``` PowerShell
+ 
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+```
 
 ## Exit the console
 
@@ -332,3 +349,5 @@ Type `exit` to close the session.
 [customex]:https://docs.microsoft.com/azure/virtual-machines/windows/extensions-customscript
 [profile]: https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/about/about_profiles
 [azmount]: https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows
+[githubtoken]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+
