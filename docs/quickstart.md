@@ -14,7 +14,7 @@ This document details how to use the PowerShell in Cloud Shell in the [Azure por
   Requesting a Cloud Shell... Succeeded.
   Connecting terminal...
 
-  Welcome to Azure Cloud Shell (Private Preview)
+  Welcome to Azure Cloud Shell (Preview)
 
   Type "dir" to see your Azure resources
   Type "help" to learn about Cloud Shell
@@ -94,7 +94,7 @@ MyResourceGroup         MyVM2       eastus   Standard_DS2_v2_Promo  Windows    S
     
     PS Azure:\MySubscriptionName\StorageAccounts\MyStorageAccountName\Files> dir
 
-        Directory: Azure:\MySubscriptionNameStorageAccounts\MyStorageAccountName\Files
+        Directory: Azure:\MySubscriptionName\StorageAccounts\MyStorageAccountName\Files
 
 
     Name          ConnectionString
@@ -173,7 +173,7 @@ MyResourceGroup         MyVM2       eastus   Standard_DS2_v2_Promo  Windows    S
     
  6. View your VirtualMachines
 
-    You can find all your virtual machines under the current subscription via `VirtualMachines` directory.
+    - You can find all your virtual machines under the current subscription
     
     ``` PowerShell
     
@@ -191,7 +191,22 @@ MyResourceGroup         MyVM2       eastus   Standard_DS2_v2_Promo  Windows    S
     
     ```
     
-    Or you can go to the `ResourceGroups` directory to find the virtual machines under the current resource group.
+    - You can find the virtual machines under your current resource group
+    
+    ``` PowerShell
+    
+    PS Azure:\MySubscriptionName\ResourceGroups\MyResourceGroup1> Get-AzureRmVm
+    
+        Directory: Azure:\MySubscriptionName\VirtualMachines
+
+
+    Name       ResourceGroupName  Location  VmSize          OsType              NIC ProvisioningState  PowerState
+    ----       -----------------  --------  ------          ------              --- -----------------  ----------
+    TestVm1    MyResourceGroup1   westus    Standard_DS2_v2 Windows       my2008r213         Succeeded     stopped
+    TestVm2    MyResourceGroup1   westus    Standard_DS1_v2 Windows          jpstest         Succeeded deallocated
+   
+    ```
+    - You can find the virtual machines under your current resource group by navigating through the `ResourceGroups` directory
     
  
     ``` PowerShell
@@ -324,19 +339,28 @@ For how to create a profile, please refer to [About Profiles][profile].
 
 ## Use Git
 
-To clone a repo in the CloudShell, you need to create a [personal access token][githubtoken] and use it as username. Once you have your  token clone the repository as follows:
+Some times you may want to make a quick change in your GitHub repo. To do that, you can clone a repo in the CloudShell. We have tried git clone using a personal access token shown below. But it's recommanded for you to read more about [Git automation with OAuth token][githubtoken].
 
  ``` PowerShell
   git clone https://<your-access-token>@github.com/username/repo.git
 
-```
+ ```
 
-As the CloudShell session will be gone once you sign out or the session gets timed out, the git config file will not be persisted. To avoid entering your git identity every time you use git, you may add git config information in your custom profile. For example you may add the following to your profile.ps1. 
+As the CloudShell session will be gone once you sign out or the session gets timed out, the Git config file will not exist in your next logon. To keep your Git config persisted, you may save your .gitconfig to your CloudDrive and copy it down or create a symlink when the CloudShell gets launched. As an example, you may add the following code snippet in your profile.ps1, which creates a symlink to my CloudDrive.
 
  ``` PowerShell
  
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
+# .gitconfig path relative to this script
+$script:gitconfigPath = Join-Path $PSScriptRoot .gitconfig
+
+# Create a symlink to .gitconfig in user's $home
+if(Test-Path $script:gitconfigPath){
+
+    if(-not (Test-Path (Join-Path $Home .gitconfig ))){
+         New-Item -ItemType SymbolicLink -Path $home -Name .gitconfig -Value $script:gitconfigPath
+    }
+}
+
 
 ```
 
@@ -347,7 +371,8 @@ Type `exit` to close the session.
 [bashqs]:https://docs.microsoft.com/azure/cloud-shell/quickstart
 [gallery]:https://www.powershellgallery.com/
 [customex]:https://docs.microsoft.com/azure/virtual-machines/windows/extensions-customscript
-[profile]: https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/about/about_profiles
-[azmount]: https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows
-[githubtoken]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+[profile]: https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/about/about_profiles
+[azmount]: https://docs.microsoft.com/azure/storage/files/storage-how-to-use-files-windows
+[githubtoken]: https://help.github.com/articles/git-automation-with-oauth-tokens/
+
 
